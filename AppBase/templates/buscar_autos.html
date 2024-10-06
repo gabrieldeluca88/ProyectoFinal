@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenidoQCambia %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/buscar_autos.css' %}">
+
+  <h1>Buscar Autos</h1>
+
+  <div class="container">
+    <form method="GET" action="{% url 'BusquedaAutos' %}">
+      <div class="form-group">
+        <label>Buscar por:</label>
+        <div class="btn-group" role="group">
+            {% url 'BuscarModelo' as url %}
+            <button type="button" onclick="window.location.href='{{ url }}'">MODELO</button>
+            {% url 'BuscarTipo' as url %}
+            <button type="button" onclick="window.location.href='{{ url }}'">TIPO</button>
+            {% url 'BuscarMarca' as url %}
+            <button type="button" onclick="window.location.href='{{ url }}'">MARCA</button>
+            {% url 'BuscarValoracion' as url %}
+            <button type="button" onclick="window.location.href='{{ url }}'">VALORACIÓN</button>
+        </div>
+      </div>
+      {% csrf_token %}
+    </form>
+  </div>
+{% endblock %}

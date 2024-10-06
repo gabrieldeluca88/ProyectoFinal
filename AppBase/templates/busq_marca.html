@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenidoQCambia %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/busq_marca.css' %}">
+
+    <form action="{% url 'BuscarMarca' %}" method="GET">{% csrf_token %}
+        <p>Nombre de la marca de autos que queres buscar: <input type="text" name="marca" id=""></p>
+        <button type="submit"> Buscar </button>
+    </form>
+{% endblock contenidoQCambia %}

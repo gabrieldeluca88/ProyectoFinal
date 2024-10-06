@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenidoQCambia %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ver_autos.css' %}">
+
+    <h1>Lista de autos</h1>
+
+    <p class="ordenar-por">Ordenar por:</p>
+    <ul>
+        <li>
+            <form method="get" action="{% url 'ListaAutos' %}">
+                <input type="hidden" name="orden" value="lanzamiento" />
+                <button type="submit">Fecha de lanzamiento</button>
+            </form>
+        </li>
+        <li>
+            <form method="get" action="{% url 'ListaAutos' %}">
+                <input type="hidden" name="orden" value="valoracion" />
+                <button type="submit">Valoración</button>
+            </form>
+        </li>
+    </ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="columna-nombre">Modelo</th>
+                <th class="columna-fecha-salida">Fecha de salida</th>
+                <th class="columna-genero">Tipo</th>
+                <th class="columna-marca">Marca</th>
+                <th class="columna-descripcion">Descripción</th>
+                <th class="columna-valoracion">Valoración</th>
+                <th class="columna-acciones">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for auto in autos %}
+                <tr>
+                    <td>{{ auto.modelo }}</td>
+                    <td>{{ auto.fecha_salida }}</td>
+                    <td>{{ auto.tipo }}</td>
+                    <td>{{ auto.marca }}</td>
+                    <td>{{ auto.descripcion }}</td>
+                    <td>{{ auto.valoracion }}</td>
+                    <td>
+                        <div style="display: flex; column-gap: 5px;">
+                            <form action="{% url 'EliminarAuto' auto.id %}" method="POST">{% csrf_token %}
+                                <button type="submit">Eliminar</button>
+                            </form>
+                            <button>
+                                <a href="{% url 'EditarAuto' auto.id %}">Editar</a>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px;">
+        {% url 'AgregarAuto' as url %}
+        <button type="button" onclick="window.location.href='{{ url }}'">Agregar Auto</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+        {% url 'AgregarResena' as url %}
+        <button type="button" onclick="window.location.href='{{ url }}'">Agregar Reseña</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+        {% url 'ListaResenas' as url %}
+        <button type="button" onclick="window.location.href='{{ url }}'">Ver Reseñas hechas</button>
+    </div>
+{% endblock contenidoQCambia %}
