@@ -40,5 +40,4 @@ py manage.py runserver
 
 video link https://drive.google.com/file/d/1ll5WSMt5-m0ys5qw4fgAJbcMFVrYNaRH/view?usp=sharing
 
-usuario: admin
-pass: admin123456
+
