@@ -22,6 +22,9 @@ pip install -r requirements.txt
 ```
 - Crear la base de datos 
 ```sh
+py manage.py makemigrations
+```
+```sh
 py manage.py migrate
 ```
 - Crear un super usuario 
